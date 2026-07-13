@@ -3,34 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Boban Ljubicic | Embedded Systems</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 850px;
+      max-width: 900px;
       margin: 40px auto;
       padding: 0 20px;
       line-height: 1.6;
       color: #222;
     }
-    h1, h2 {
+
+    h1, h2, h3 {
       color: #111;
     }
-    .section {
-      margin-bottom: 35px;
+
+    h1 {
+      margin-bottom: 5px;
     }
-    .project {
-      border-left: 3px solid #333;
-      padding-left: 15px;
-      margin-bottom: 20px;
+
+    h2 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 6px;
+      margin-top: 45px;
     }
+
     a {
       color: #0057b8;
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      margin-bottom: 35px;
+    }
+
+    .profile-picture {
+      width: 145px;
+      height: 145px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #333;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #444;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .links {
+      margin-top: 10px;
+    }
+
+    .section {
+      margin-bottom: 35px;
+    }
+
+    .project, .experience {
+      border-left: 3px solid #333;
+      padding-left: 15px;
+      margin-bottom: 25px;
+    }
+
+    .project h3, .experience h3 {
+      margin-bottom: 5px;
+    }
+
+    .project-links {
+      margin-top: 8px;
+    }
+
     .tag {
       display: inline-block;
       background: #eee;
@@ -39,40 +91,67 @@
       border-radius: 4px;
       font-size: 14px;
     }
-    .subtitle {
-      font-size: 18px;
-      color: #444;
-      margin-top: -10px;
-      margin-bottom: 20px;
+
+    @media (max-width: 600px) {
+      .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .profile-picture {
+        width: 120px;
+        height: 120px;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <h1>Boban Ljubicic, BSc</h1>
-  
-  <p class="subtitle">
-    MSc Information and Computer Engineering<br>
-    Electrical &amp; Computer Engineer | Embedded Systems
-  </p>
+  <div class="profile-header">
+    <img
+      src="assets/profile.jpg"
+      alt="Portrait of Boban Ljubicic"
+      class="profile-picture"
+    />
 
-  <p>
-    <a href="mailto:ljubicic.bobo@gmail.com">Email</a> |
-    <a href="https://github.com/YOUR_USERNAME">GitHub</a> |
-    <a href="https://www.linkedin.com/in/boban-ljubicic-408b9b2a7/">LinkedIn</a> |
-    <a href="cv.pdf">CV</a>
-  </p>
+    <div>
+      <h1>Boban Ljubicic, BSc</h1>
+
+      <p class="subtitle">
+        MSc Student in Information and Computer Engineering<br>
+        Electrical &amp; Computer Engineer | Embedded Systems
+      </p>
+
+      <p class="links">
+        <a href="mailto:your.email@example.com">Email</a> |
+        <a href="https://github.com/ljubicicbobo" target="_blank">GitHub</a> |
+        <a href="https://www.linkedin.com/in/YOUR_LINKEDIN/" target="_blank">LinkedIn</a> |
+        <a href="cv.pdf" target="_blank">CV</a>
+      </p>
+    </div>
+  </div>
+
 
   <div class="section">
     <h2>Projects</h2>
 
+    <h3>TU Graz Projects</h3>
+
     <div class="project">
       <h3>RISC-V Processor / HADES Lab</h3>
+
       <p>
         Implemented and tested parts of a RISC-V processor pipeline using
-        SystemVerilog, Verilator, and GTKWave. Worked on fetch, decode,
-        execute, memory, writeback, CSR handling, and Wishbone memory access.
+        SystemVerilog, Verilator, and GTKWave. Worked on pipeline stages,
+        CSR handling, Wishbone memory access, and debugging with simulation tools.
       </p>
+
+      <p class="project-links">
+        <a href="projects/hades/index.html">Project overview</a> |
+        <a href="https://github.com/ljubicicbobo/YOUR_REPO_NAME" target="_blank">Code</a>
+      </p>
+
       <p>
         <span class="tag">SystemVerilog</span>
         <span class="tag">RISC-V</span>
@@ -81,37 +160,117 @@
       </p>
     </div>
 
+
     <div class="project">
       <h3>ASCON Hardware Accelerator</h3>
+
       <p>
-        Integrated and tested hardware modules for ASCON cryptographic
-        acceleration, including permutation and hash functionality.
+        Integrated and tested hardware modules for ASCON cryptographic acceleration,
+        including permutation and hash functionality.
       </p>
+
+      <p class="project-links">
+        <a href="projects/ascon/index.html">Project overview</a> |
+        <a href="https://github.com/ljubicicbobo/YOUR_REPO_NAME" target="_blank">Code</a>
+      </p>
+
       <p>
-        <span class="tag">Hardware Security</span>
         <span class="tag">SystemVerilog</span>
+        <span class="tag">Hardware Security</span>
         <span class="tag">Cryptography</span>
       </p>
     </div>
 
+
+    <h3>FESB Projects</h3>
+
     <div class="project">
-      <h3>Embedded C / Microcontroller Projects</h3>
+      <h3>Microcontroller / Embedded C Project</h3>
+
       <p>
-        Developed low-level embedded software using C for microcontroller
-        peripherals such as GPIO, ADC, PWM, I2C, and UART.
+        Developed embedded C software for microcontroller peripherals and basic
+        hardware-near functionality.
       </p>
+
+      <p class="project-links">
+        <a href="projects/fesb-microcontroller/index.html">Project overview</a> |
+        <a href="https://github.com/ljubicicbobo/YOUR_REPO_NAME" target="_blank">Code</a>
+      </p>
+
       <p>
         <span class="tag">C</span>
         <span class="tag">Microcontrollers</span>
+        <span class="tag">UART</span>
         <span class="tag">GPIO</span>
-        <span class="tag">I2C</span>
+      </p>
+    </div>
+
+
+    <h3>Personal Projects</h3>
+
+    <div class="project">
+      <h3>Embedded Linux Project</h3>
+
+      <p>
+        Personal project focused on building and configuring an embedded Linux system,
+        cross-compilation, boot process, and hardware interaction.
+      </p>
+
+      <p class="project-links">
+        <a href="projects/embedded-linux/index.html">Project overview</a> |
+        <a href="https://github.com/ljubicicbobo/YOUR_REPO_NAME" target="_blank">Code</a>
+      </p>
+
+      <p>
+        <span class="tag">Embedded Linux</span>
+        <span class="tag">Buildroot</span>
+        <span class="tag">C</span>
+        <span class="tag">Bash</span>
       </p>
     </div>
 
   </div>
 
+
+  <div class="section">
+    <h2>Work Experience</h2>
+
+    <div class="experience">
+      <h3>Student Assistant / Embedded Software — Ericsson Nikola Tesla</h3>
+
+      <p>
+        Worked on embedded/software-related tasks, including documentation,
+        simple driver work, and support for development activities.
+      </p>
+
+      <p>
+        <span class="tag">Embedded Software</span>
+        <span class="tag">Documentation</span>
+        <span class="tag">Drivers</span>
+      </p>
+    </div>
+
+    <div class="experience">
+      <h3>Student Assistant / Electronics & Firmware — CISC Semiconductor</h3>
+
+      <p>
+        Assisted with soldering, basic schematic work, documentation, and firmware
+        programming for NFC-related functionality.
+      </p>
+
+      <p>
+        <span class="tag">Firmware</span>
+        <span class="tag">NFC</span>
+        <span class="tag">Soldering</span>
+        <span class="tag">KiCad</span>
+      </p>
+    </div>
+  </div>
+
+
   <div class="section">
     <h2>Skills</h2>
+
     <p>
       <span class="tag">C</span>
       <span class="tag">C++</span>
@@ -127,15 +286,6 @@
       <span class="tag">Oscilloscope</span>
       <span class="tag">LTspice</span>
       <span class="tag">KiCad</span>
-    </p>
-  </div>
-
-  <div class="section">
-    <h2>Contact</h2>
-    <p>
-      I am interested in student roles, internships, thesis opportunities,
-      and junior positions in embedded systems, embedded Linux, firmware,
-      hardware-near software, and industrial/automation systems.
     </p>
   </div>
 
