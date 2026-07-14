@@ -174,33 +174,33 @@
     <h3>TU Graz Projects</h3>
 
 
-  <div class="project">
-    <h3>Microcontroller Programming Lab</h3>
-  
-    <p>
-      Completed hands-on embedded programming exercises using the Raspberry Pi Pico
-      with the RP2040 microcontroller. Worked with low-level peripheral programming,
-      including GPIO, ADC, PWM, I²C communication, and motor control using a
-      prebuilt hardware kit with switches, a brushless motor, and encoder feedback.
-    </p>
-  
-    <p class="project-links">
-      <a href="projects/microcontroller-lab/index.html">Project overview</a> |
-      <a href="https://github.com/ljubicicbobo/YOUR_REPO_NAME" target="_blank">Code</a>
-    </p>
-  
-    <p>
-      <span class="tag">C</span>
-      <span class="tag">Raspberry Pi Pico</span>
-      <span class="tag">RP2040</span>
-      <span class="tag">GPIO</span>
-      <span class="tag">ADC</span>
-      <span class="tag">PWM</span>
-      <span class="tag">I²C</span>
-      <span class="tag">Motor Control</span>
-      <span class="tag">Embedded Systems</span>
-    </p>
-  </div>
+    <div class="project">
+      <h3>Microcontroller Programming Lab</h3>
+    
+      <p>
+        Completed hands-on embedded programming exercises using the Raspberry Pi Pico
+        with the RP2040 microcontroller. Worked with low-level peripheral programming,
+        including GPIO, ADC, PWM, I²C communication, and motor control using a
+        prebuilt hardware kit with switches, a brushless motor, and encoder feedback.
+      </p>
+    
+      <p class="project-links">
+        <a href="projects/microcontroller-lab/index.html">Project overview</a> |
+        <a href="https://github.com/ljubicicbobo/YOUR_REPO_NAME" target="_blank">Code</a>
+      </p>
+    
+      <p>
+        <span class="tag">C</span>
+        <span class="tag">Raspberry Pi Pico</span>
+        <span class="tag">RP2040</span>
+        <span class="tag">GPIO</span>
+        <span class="tag">ADC</span>
+        <span class="tag">PWM</span>
+        <span class="tag">I²C</span>
+        <span class="tag">Motor Control</span>
+        <span class="tag">Embedded Systems</span>
+      </p>
+    </div>
 
     
     <div class="project">
@@ -338,27 +338,87 @@
     <h3>Personal Projects</h3>
 
     <div class="project">
-      <h3>Embedded Linux Project</h3>
-
-      <p>
-        Personal project focused on building and configuring an embedded Linux system,
-        cross-compilation, boot process, and hardware interaction.
-      </p>
-
-      <p class="project-links">
-        <a href="projects/embedded-linux/index.html">Project overview</a> |
-        <a href="https://github.com/ljubicicbobo/YOUR_REPO_NAME" target="_blank">Code</a>
-      </p>
-
-      <p>
-        <span class="tag">Embedded Linux</span>
-        <span class="tag">Buildroot</span>
-        <span class="tag">C</span>
-        <span class="tag">Bash</span>
-      </p>
-    </div>
+          <h3>ESP32 Power Converter Efficiency Monitor</h3>
+    
+          <p>
+            Designed and built an embedded monitoring system for a DC-DC buck converter
+            using an ESP32-S3 running FreeRTOS. Implemented a multitasking firmware
+            architecture with independent tasks for sensor sampling, data logging,
+            WiFi/MQTT cloud reporting, and CAN bus broadcasting, coordinated through
+            FreeRTOS queues. Measured real-time voltage, current, and temperature using
+            a shunt-resistor current sensing circuit and a DS18B20 probe, computing live
+            power conversion efficiency and comparing results against the converter's
+            datasheet specifications.
+          </p>
+    
+          <p class="project-links">
+            <a href="projects/esp32-power-monitor/index.html">Project overview</a> |
+            <a href="https://github.com/ljubicicbobo/YOUR_REPO_NAME" target="_blank">Code</a>
+          </p>
+    
+          <p>
+            <span class="tag">C</span>
+            <span class="tag">ESP-IDF</span>
+            <span class="tag">ESP32-S3</span>
+            <span class="tag">FreeRTOS</span>
+            <span class="tag">Power Electronics</span>
+            <span class="tag">CAN Bus</span>
+            <span class="tag">MQTT</span>
+            <span class="tag">ADC</span>
+            <span class="tag">Embedded Systems</span>
+          </p>
+        </div>
 
   </div>
+
+      <div class="project">
+      <h3>ESP32 Industrial Condition Monitoring Node</h3>
+    
+      <p>
+        Developed an embedded condition-monitoring system using an ESP32 running
+        Zephyr RTOS. The device collects temperature and vibration measurements,
+        processes the sensor data locally, and detects abnormal operating conditions
+        using RMS and threshold-based analysis. The firmware uses separate Zephyr
+        threads for sensor acquisition, signal processing, data storage, and network
+        communication, with message queues used for safe data transfer between
+        components.
+      </p>
+    
+      <p>
+        Implemented secure WiFi communication and MQTT-based telemetry for publishing
+        live measurements, alarms, system uptime, and device status. Added persistent
+        configuration storage, automatic network reconnection, watchdog-based fault
+        recovery, structured logging, and planned support for signed firmware updates
+        using MCUboot and MCUmgr.
+      </p>
+    
+      <p class="project-links">
+        <a href="projects/esp32-condition-monitor/index.html">
+          Project overview
+        </a>
+        |
+        <a
+          href="https://github.com/ljubicicbobo/esp32-zephyr-condition-monitor"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Code
+        </a>
+      </p>
+    
+      <p>
+        <span class="tag">C</span>
+        <span class="tag">Zephyr RTOS</span>
+        <span class="tag">ESP32</span>
+        <span class="tag">WiFi</span>
+        <span class="tag">MQTT</span>
+        <span class="tag">TLS</span>
+        <span class="tag">I2C</span>
+        <span class="tag">Sensor Processing</span>
+        <span class="tag">MCUboot</span>
+        <span class="tag">Embedded Systems</span>
+      </p>
+    </div>
 
 
   <div class="section">
