@@ -1,1 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>RISC-V Processor / HaDes-V Lab | Boban Ljubicic</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+      color: #222;
+    }
+
+    h1, h2, h3 {
+      color: #111;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 6px;
+      margin-top: 40px;
+    }
+
+    a {
+      color: #0057b8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 25px;
+    }
+
+    .summary {
+      color: #444;
+      font-size: 18px;
+      margin-top: 0;
+    }
+
+    .project-info {
+      border-left: 3px solid #333;
+      padding-left: 15px;
+      margin: 25px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #eee;
+      padding: 4px 8px;
+      margin: 3px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .note {
+      background: #f6f6f6;
+      border-left: 3px solid #999;
+      padding: 12px 15px;
+      margin: 20px 0;
+    }
+
+    code {
+      background: #f2f2f2;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <a class="back-link" href="../../index.html">← Back to portfolio</a>
+
+  <h1>RISC-V Processor / HaDes-V Lab</h1>
+
+  <p class="summary">
+    SystemVerilog hardware-design project focused on implementing a modular,
+    pipelined 32-bit RISC-V processor, including fetch, decode, execute,
+    memory, writeback, register file, instruction decoder, CSR handling,
+    interrupts, and Wishbone-based memory/peripheral access.
+  </p>
+
+  <div class="project-info">
+    <p>
+      <strong>Course:</strong> Microcontroller Design Laboratory — TU Graz<br>
+      <strong>Project:</strong> HaDes-V RISC-V Processor<br>
+      <strong>Language:</strong> SystemVerilog<br>
+      <strong>Main topics:</strong> RISC-V, pipelined CPU design, CSR handling, Wishbone, simulation, FPGA synthesis
+    </p>
+  </div>
+
+  <h2>Overview</h2>
+
+  <p>
+    HaDes-V is a hardware-design laboratory project in which a RISC-V-based
+    microcontroller is implemented in SystemVerilog. The course focuses on
+    understanding the internal structure and operation of an MCU by designing
+    hardware modules, writing low-level software, and debugging both hardware
+    and software behavior.
+  </p>
+
+  <p>
+    The processor developed in the lab is a 32-bit pipelined RISC-V processor
+    with five main stages: instruction fetch, instruction decode, execute,
+    memory, and writeback. The design supports RV32I instructions, CSR
+    instructions, machine-mode execution, timer behavior, and interrupt handling.
+  </p>
+
+  <h2>What I Worked On</h2>
+
+  <ul>
+    <li>Implemented and connected CPU pipeline stages in SystemVerilog.</li>
+    <li>Worked on the instruction fetch, decode, execute, memory, and writeback stages.</li>
+    <li>Implemented instruction decoding logic for RV32I-style instructions.</li>
+    <li>Worked on register file behavior and pipeline data forwarding.</li>
+    <li>Implemented memory-stage behavior for load/store instructions.</li>
+    <li>Handled Wishbone-based memory access and peripheral communication.</li>
+    <li>Worked on CSR behavior, traps, machine return behavior, and interrupt handling.</li>
+    <li>Used Verilator and GTKWave to simulate and debug hardware behavior.</li>
+    <li>Used Git to manage and submit the implementation during the lab.</li>
+  </ul>
+
+  <h2>Technical Details</h2>
+
+  <h3>Pipeline Architecture</h3>
+
+  <p>
+    The processor is organized as a five-stage pipeline with fetch, decode,
+    execute, memory, and writeback stages. Each stage passes instruction,
+    program-counter, data, and status information forward, while control and
+    jump-related signals can flow backward to handle stalls, jumps, traps,
+    and interrupts.
+  </p>
+
+  <h3>Instruction Decoder and Register File</h3>
+
+  <p>
+    The decode logic translates raw RISC-V instructions into the control
+    signals required by the later pipeline stages. The register file provides
+    read and write access to the general-purpose integer registers and is a
+    core part of instruction execution and forwarding behavior.
+  </p>
+
+  <h3>Execute Stage</h3>
+
+  <p>
+    The execute stage performs arithmetic, logical, branch, jump, and address
+    calculation operations. It also contributes to the control-flow behavior
+    of the processor by generating next-PC and jump-related information.
+  </p>
+
+  <h3>Memory Stage and Wishbone</h3>
+
+  <p>
+    The memory stage handles load and store operations and communicates with
+    memory and peripherals through a Wishbone-style interface. This included
+    handling access size, alignment, memory responses, and pipeline status
+    during memory transactions.
+  </p>
+
+  <h3>Writeback, CSR, and Interrupt Handling</h3>
+
+  <p>
+    The writeback stage completes instruction execution by writing results
+    back to the register file and handling CSR-related behavior. This part
+    also involved trap/interrupt control, machine exception program counter
+    behavior, and machine-mode control/status registers.
+  </p>
+
+  <h2>Tools and Technologies</h2>
+
+  <p>
+    <span class="tag">SystemVerilog</span>
+    <span class="tag">RISC-V</span>
+    <span class="tag">RV32I</span>
+    <span class="tag">Verilator</span>
+    <span class="tag">GTKWave</span>
+    <span class="tag">Wishbone</span>
+    <span class="tag">CSR</span>
+    <span class="tag">FPGA</span>
+    <span class="tag">Vivado</span>
+    <span class="tag">Git</span>
+    <span class="tag">Digital Design</span>
+    <span class="tag">Computer Architecture</span>
+  </p>
+
+  <h2>Files I Worked With</h2>
+
+  <ul>
+    <li><code>cpu.sv</code> — top-level CPU integration</li>
+    <li><code>fetch_stage.sv</code> — instruction fetch logic</li>
+    <li><code>decode_stage.sv</code> — decode-stage control logic</li>
+    <li><code>instruction_decoder.sv</code> — RISC-V instruction decoding</li>
+    <li><code>register_file.sv</code> — general-purpose register file</li>
+    <li><code>execute_stage.sv</code> — ALU/control-flow execution logic</li>
+    <li><code>memory_stage.sv</code> — load/store and Wishbone memory access</li>
+    <li><code>writeback_stage.sv</code> — result writeback, CSR, traps, and interrupts</li>
+  </ul>
+
+  <h2>What I Learned</h2>
+
+  <ul>
+    <li>How a pipelined RISC-V processor is structured internally.</li>
+    <li>How instructions move through fetch, decode, execute, memory, and writeback stages.</li>
+    <li>How hardware modules communicate through status, data, and control signals.</li>
+    <li>How memory-mapped peripherals can be connected through a bus interface.</li>
+    <li>How CSR instructions, traps, and interrupts affect processor control flow.</li>
+    <li>How to debug digital hardware using simulations and waveform inspection.</li>
+    <li>How to structure a larger SystemVerilog project across multiple modules.</li>
+  </ul>
+
+  <h2>Repository</h2>
+
+  <div class="note">
+    <p>
+      This was a university lab project. Because the assignment may be reused
+      in later semesters, I keep the full source code private and publish only
+      this technical overview.
+    </p>
+  </div>
+
+  <p>
+    <a href="https://github.com/ljubicicbobo/YOUR_REPO_NAME" target="_blank">
+      View code on GitHub
+    </a>
+  </p>
+
+</body>
+</html>
