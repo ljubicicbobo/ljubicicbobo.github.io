@@ -1,1 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Microcontroller Programming Lab | Boban Ljubicic</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+      color: #222;
+    }
+
+    h1, h2, h3 {
+      color: #111;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 6px;
+      margin-top: 40px;
+    }
+
+    a {
+      color: #0057b8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 25px;
+    }
+
+    .summary {
+      color: #444;
+      font-size: 18px;
+      margin-top: 0;
+    }
+
+    .project-info {
+      border-left: 3px solid #333;
+      padding-left: 15px;
+      margin: 25px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #eee;
+      padding: 4px 8px;
+      margin: 3px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .note {
+      background: #f6f6f6;
+      border-left: 3px solid #999;
+      padding: 12px 15px;
+      margin: 20px 0;
+    }
+
+    code {
+      background: #f2f2f2;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <a class="back-link" href="../../index.html">← Back to portfolio</a>
+
+  <h1>Microcontroller Programming Lab</h1>
+
+  <p class="summary">
+    Hands-on embedded programming project using the Raspberry Pi Pico with the
+    RP2040 microcontroller, focused on low-level peripheral control, ADC input,
+    GPIO handling, I²C communication, PWM motor control, and hardware-based testing.
+  </p>
+
+  <div class="project-info">
+    <p>
+      <strong>Course:</strong> Microcontroller, UE — TU Graz<br>
+      <strong>Platform:</strong> Raspberry Pi Pico / RP2040<br>
+      <strong>Language:</strong> C<br>
+      <strong>Main topics:</strong> GPIO, ADC, PWM, I²C, motor control, debugging
+    </p>
+  </div>
+
+  <h2>Overview</h2>
+
+  <p>
+    This lab focused on practical microcontroller programming with the Raspberry Pi
+    Pico and the RP2040 MCU. The course covered hands-on programming with a prebuilt
+    hardware kit and included GPIO, ADC, PWM, and I²C communication tasks.
+  </p>
+
+  <p>
+    The hardware setup included a Raspberry Pi Pico, two switches, a brushless motor
+    with encoder feedback, and a Raspberry Pi Debug Probe.
+  </p>
+
+  <h2>What I Implemented</h2>
+
+  <ul>
+    <li>Low-level GPIO configuration using RP2040 memory-mapped registers.</li>
+    <li>GPIO input/output handling, including pull-up and pull-down configuration.</li>
+    <li>ADC initialization and 12-bit analog value reading.</li>
+    <li>Translation of raw ADC values into discrete input sectors.</li>
+    <li>A finite-state-machine based vault application using switches, ADC input, and LED feedback.</li>
+    <li>Motor-control logic for a smart knob using PWM, I²C encoder feedback, snap points, and PID-style control.</li>
+    <li>Debugging and testing using serial output and the course hardware testsystem.</li>
+  </ul>
+
+  <h2>Technical Details</h2>
+
+  <h3>GPIO Driver</h3>
+
+  <p>
+    I implemented GPIO functions by directly accessing the RP2040 hardware register
+    regions for IO_BANK0, PADS_BANK0, and SIO. The GPIO driver included pin function
+    selection, input/output mode configuration, output level control, input reading,
+    and pull resistor configuration.
+  </p>
+
+  <h3>ADC Driver</h3>
+
+  <p>
+    The ADC implementation initialized the ADC peripheral, configured the analog
+    input pin, selected the ADC channel, started conversions, waited for the result,
+    and returned the 12-bit ADC value. The ADC value was also translated into
+    discrete sectors for use in the vault application.
+  </p>
+
+  <h3>Vault Application</h3>
+
+  <p>
+    The vault task used a finite state machine with states such as open, set PIN,
+    enter PIN, wrong PIN, and locked. It used switch inputs, ADC-based rotary input,
+    button confirmation, and LED feedback to simulate a small embedded access-control
+    system.
+  </p>
+
+  <h3>Smart Knob Application</h3>
+
+  <p>
+    The smart knob task used encoder feedback, PWM motor control, I²C initialization,
+    snap points, and PID-style control logic to create a motorized rotary interface.
+    The goal was to create controlled movement toward defined angular positions
+    instead of simply reading a passive input.
+  </p>
+
+  <h2>Tools and Technologies</h2>
+
+  <p>
+    <span class="tag">C</span>
+    <span class="tag">Raspberry Pi Pico</span>
+    <span class="tag">RP2040</span>
+    <span class="tag">GPIO</span>
+    <span class="tag">ADC</span>
+    <span class="tag">PWM</span>
+    <span class="tag">I²C</span>
+    <span class="tag">Motor Control</span>
+    <span class="tag">Embedded C</span>
+    <span class="tag">Memory-Mapped I/O</span>
+    <span class="tag">Debugging</span>
+  </p>
+
+  <h2>What I Learned</h2>
+
+  <ul>
+    <li>How microcontroller peripherals are configured below the abstraction level of normal libraries.</li>
+    <li>How GPIO direction, pin functions, pull resistors, and output levels are controlled through registers.</li>
+    <li>How ADC values can be sampled and converted into application-level input states.</li>
+    <li>How to structure embedded applications as state machines.</li>
+    <li>How PWM and encoder feedback can be combined for motor-control behavior.</li>
+    <li>How to debug embedded code using serial output, hardware testing, and a debug probe.</li>
+  </ul>
+
+  <h2>Repository</h2>
+
+  <div class="note">
+    <p>
+      This was a university lab project. Because course assignments can be reused in
+      later semesters, I only publish a project overview and selected explanations here.
+      Full source code can be shared privately if appropriate.
+    </p>
+  </div>
+
+  <p>
+    <a href="https://github.com/ljubicicbobo/YOUR_REPO_NAME" target="_blank">
+      View code on GitHub
+    </a>
+  </p>
+
+</body>
+</html>
