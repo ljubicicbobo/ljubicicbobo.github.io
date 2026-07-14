@@ -1,1 +1,250 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ASCON Hardware Accelerator | Boban Ljubicic</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+      color: #222;
+    }
+
+    h1, h2, h3 {
+      color: #111;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 6px;
+      margin-top: 40px;
+    }
+
+    a {
+      color: #0057b8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 25px;
+    }
+
+    .summary {
+      color: #444;
+      font-size: 18px;
+      margin-top: 0;
+    }
+
+    .project-info {
+      border-left: 3px solid #333;
+      padding-left: 15px;
+      margin: 25px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #eee;
+      padding: 4px 8px;
+      margin: 3px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .note {
+      background: #f6f6f6;
+      border-left: 3px solid #999;
+      padding: 12px 15px;
+      margin: 20px 0;
+    }
+
+    code {
+      background: #f2f2f2;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <a class="back-link" href="../../index.html">← Back to portfolio</a>
+
+  <h1>ASCON Hardware Accelerator / Embedded Secure Boot</h1>
+
+  <p class="summary">
+    Hardware/security project focused on extending a RISC-V Ibex-based system
+    with an ASCON cryptographic accelerator and using it for embedded secure
+    boot verification.
+  </p>
+
+  <div class="project-info">
+    <p>
+      <strong>Course:</strong> Hardware Design for Security — TU Graz<br>
+      <strong>Project:</strong> Embedded Secure Boot with ASCON acceleration<br>
+      <strong>Languages:</strong> SystemVerilog, C, Python<br>
+      <strong>Main topics:</strong> ASCON, secure boot, RISC-V Ibex, custom instructions, hardware/software co-design
+    </p>
+  </div>
+
+  <h2>Overview</h2>
+
+  <p>
+    This project focused on adding modern security functionality to an embedded
+    CPU system. The main idea was to accelerate ASCON cryptographic operations
+    in hardware and use the accelerator from software to verify boot images.
+  </p>
+
+  <p>
+    Secure boot verifies the integrity and authenticity of a software image
+    before execution. If verification fails, the bootloader refuses to boot the
+    image. Because embedded devices have limited processing power, this project
+    used hardware acceleration to make cryptographic operations more suitable
+    for the target system.
+  </p>
+
+  <h2>What I Worked On</h2>
+
+  <ul>
+    <li>Integrated an ASCON accelerator into a RISC-V Ibex-based system.</li>
+    <li>Implemented a hardware wrapper around the ASCON permutation module.</li>
+    <li>Maintained a 320-bit ASCON internal state inside the accelerator.</li>
+    <li>Added custom instruction support for ASCON operations.</li>
+    <li>Worked with <code>AXOR</code> for state-word XOR operations.</li>
+    <li>Worked with <code>APERM</code> for multi-round ASCON permutation execution.</li>
+    <li>Modified decode and execute-stage logic for ASCON instruction handling.</li>
+    <li>Implemented stall/control behavior for multi-cycle accelerator operations.</li>
+    <li>Implemented ASCON-Hash256 and ASCON-AEAD128 usage from software.</li>
+    <li>Worked on secure boot image packing and bootloader verification flow.</li>
+  </ul>
+
+  <h2>Technical Details</h2>
+
+  <h3>ASCON Accelerator Architecture</h3>
+
+  <p>
+    The accelerator was split into two main hardware modules: a combinational
+    ASCON permutation module and an accelerator wrapper connected to the CPU.
+    The wrapper stores the ASCON internal state, starts AXOR/APERM operations,
+    generates control signals, and routes results back to the processor.
+  </p>
+
+  <h3>Internal State Representation</h3>
+
+  <p>
+    The 320-bit ASCON state was represented as ten 32-bit words. This made it
+    convenient to access individual state words through immediate values in the
+    custom instruction format.
+  </p>
+
+  <h3>Custom Instructions</h3>
+
+  <p>
+    Two custom instructions were used:
+  </p>
+
+  <ul>
+    <li>
+      <code>AXOR</code> — XORs a CPU register value with a selected ASCON state word
+      and stores the result back into the accelerator state.
+    </li>
+    <li>
+      <code>APERM</code> — performs a defined number of ASCON permutation rounds
+      on the internal accelerator state.
+    </li>
+  </ul>
+
+  <h3>Pipeline Integration</h3>
+
+  <p>
+    The decoder was extended to recognize ASCON instructions by opcode and
+    function fields. The execute stage instantiated the accelerator and selected
+    ASCON results through the result multiplexer. Multi-cycle APERM operations
+    required busy/valid feedback from execute back to decode so that the pipeline
+    could stall correctly until the operation completed.
+  </p>
+
+  <h3>Cryptographic Software</h3>
+
+  <p>
+    On the software side, ASCON-Hash256 was used to compute a 256-bit digest of
+    the boot image. ASCON-AEAD128 was used to compute an authentication tag.
+    The implementation used the hardware accelerator through the custom
+    instructions instead of doing the full permutation purely in software.
+  </p>
+
+  <h3>Secure Boot Image Format</h3>
+
+  <p>
+    The boot image contained a magic header, image length, ELF binary, ASCON
+    hash digest, and ASCON-AEAD authentication tag. During boot, the bootloader
+    recomputed the hash and tag using the hardware implementation and compared
+    them against the stored values to verify integrity and authenticity.
+  </p>
+
+  <h2>Tools and Technologies</h2>
+
+  <p>
+    <span class="tag">SystemVerilog</span>
+    <span class="tag">RISC-V</span>
+    <span class="tag">Ibex Core</span>
+    <span class="tag">ASCON</span>
+    <span class="tag">Cryptography</span>
+    <span class="tag">Secure Boot</span>
+    <span class="tag">Custom Instructions</span>
+    <span class="tag">Hardware Acceleration</span>
+    <span class="tag">C</span>
+    <span class="tag">Python</span>
+    <span class="tag">Hardware/Software Co-Design</span>
+    <span class="tag">Embedded Security</span>
+  </p>
+
+  <h2>What I Learned</h2>
+
+  <ul>
+    <li>How cryptographic acceleration can be integrated into a processor pipeline.</li>
+    <li>How custom instructions connect software with dedicated hardware modules.</li>
+    <li>How ASCON permutation-based cryptography works at a hardware/software level.</li>
+    <li>How secure boot uses integrity and authenticity checks before executing firmware.</li>
+    <li>How multi-cycle hardware units require pipeline stall and valid/busy handling.</li>
+    <li>How boot image formats can include metadata, hashes, and authentication tags.</li>
+    <li>How hardware/software co-design can improve performance for embedded security tasks.</li>
+  </ul>
+
+  <h2>Repository</h2>
+
+  <div class="note">
+    <p>
+      This was a university hardware-security project. Because the assignment
+      may be reused in later semesters, I keep the full source code private and
+      publish only this technical overview.
+    </p>
+  </div>
+
+  <p>
+    <a href="https://github.com/ljubicicbobo/YOUR_REPO_NAME" target="_blank">
+      View code on GitHub
+    </a>
+  </p>
+
+</body>
+</html>
