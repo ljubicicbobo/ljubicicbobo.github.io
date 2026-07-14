@@ -1,1 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Real-Time Bus Systems Lab | Boban Ljubicic</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+      color: #222;
+    }
+
+    h1, h2, h3 {
+      color: #111;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 6px;
+      margin-top: 40px;
+    }
+
+    a {
+      color: #0057b8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 25px;
+    }
+
+    .summary {
+      color: #444;
+      font-size: 18px;
+      margin-top: 0;
+    }
+
+    .project-info {
+      border-left: 3px solid #333;
+      padding-left: 15px;
+      margin: 25px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #eee;
+      padding: 4px 8px;
+      margin: 3px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .note {
+      background: #f6f6f6;
+      border-left: 3px solid #999;
+      padding: 12px 15px;
+      margin: 20px 0;
+    }
+
+    code {
+      background: #f2f2f2;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <a class="back-link" href="../../index.html">← Back to portfolio</a>
+
+  <h1>Real-Time Bus Systems Lab</h1>
+
+  <p class="summary">
+    Practical CAN bus project focused on communication analysis, physical-layer
+    signal inspection, CAN frame encoding/decoding, CRC handling, bit stuffing,
+    transceiver behavior, and arbitration testing on real embedded hardware.
+  </p>
+
+  <div class="project-info">
+    <p>
+      <strong>Course:</strong> Real-Time Bus Systems Lab — TU Graz<br>
+      <strong>Platform:</strong> TI MSP430F5529 LaunchPad, B&amp;R PLC CAN hardware<br>
+      <strong>Language:</strong> C<br>
+      <strong>Main topics:</strong> CAN bus, arbitration, CRC, bit stuffing, oscilloscope analysis
+    </p>
+  </div>
+
+  <h2>Overview</h2>
+
+  <p>
+    This lab focused on understanding CAN communication from both the software
+    and physical-layer side. The exercises included sending and receiving CAN
+    messages, analyzing packets with an oscilloscope, building and testing a CAN
+    transceiver, encoding and decoding CAN frames, and testing a multi-node CAN
+    network.
+  </p>
+
+  <p>
+    The lab used B&amp;R PLC stations for early CAN communication analysis and a
+    TI MSP430F5529 LaunchPad for implementing and testing CAN frame handling
+    on embedded hardware.
+  </p>
+
+  <h2>What I Worked On</h2>
+
+  <ul>
+    <li>Configured and analyzed CAN communication between hardware nodes.</li>
+    <li>Used an oscilloscope to inspect CAN physical-layer signals.</li>
+    <li>Decoded CAN frames into fields such as arbitration, control, data, CRC, ACK, and end-of-frame.</li>
+    <li>Implemented CAN frame creation and transmission logic in C.</li>
+    <li>Worked with bit stuffing and de-stuffing rules.</li>
+    <li>Implemented and checked CRC handling for CAN frames.</li>
+    <li>Tested CAN arbitration behavior between competing client nodes.</li>
+    <li>Analyzed standard vs. extended CAN frame priority behavior.</li>
+    <li>Investigated termination resistor effects and bus-fault behavior.</li>
+  </ul>
+
+  <h2>Technical Details</h2>
+
+  <h3>CAN Communication and Physical-Layer Analysis</h3>
+
+  <p>
+    In the first part of the lab, we worked with CAN communication on B&amp;R PLC
+    hardware and used an oscilloscope to capture CAN-High and CAN-Low signals.
+    This helped connect the abstract CAN frame format to the actual differential
+    bus signals.
+  </p>
+
+  <h3>CAN Frame Encoding and Decoding</h3>
+
+  <p>
+    The software part involved implementing CAN frame creation, transmission,
+    reception, and decoding. The implementation had to handle standard and
+    extended identifiers, payload length, data fields, CRC calculation, ACK
+    behavior, and error handling.
+  </p>
+
+  <h3>Bit Stuffing and CRC</h3>
+
+  <p>
+    A key part of the project was understanding how CAN inserts stuffing bits
+    after long runs of equal bits and how the receiver removes them again.
+    CRC handling was implemented using a shift-register-style approach to
+    validate received frames.
+  </p>
+
+  <h3>CAN Arbitration Test</h3>
+
+  <p>
+    In the network test, multiple nodes competed for the CAN bus. We defined
+    operation IDs for addition, subtraction, and multiplication requests and
+    verified arbitration behavior using oscilloscope captures. The test showed
+    how lower-priority frames stop transmitting when they detect that another
+    node is driving a dominant bit on the bus.
+  </p>
+
+  <h3>Network Setup</h3>
+
+  <p>
+    The final setup used a server node and two client nodes. The server provided
+    addition, subtraction, and multiplication services. One client sent standard
+    CAN frames for addition/subtraction requests, while another client sent an
+    extended CAN frame for multiplication requests.
+  </p>
+
+  <h2>Tools and Technologies</h2>
+
+  <p>
+    <span class="tag">C</span>
+    <span class="tag">CAN Bus</span>
+    <span class="tag">MSP430</span>
+    <span class="tag">B&amp;R PLC</span>
+    <span class="tag">PicoScope</span>
+    <span class="tag">Oscilloscope</span>
+    <span class="tag">Code Composer Studio</span>
+    <span class="tag">CRC</span>
+    <span class="tag">Bit Stuffing</span>
+    <span class="tag">Real-Time Systems</span>
+    <span class="tag">Embedded Systems</span>
+  </p>
+
+  <h2>What I Learned</h2>
+
+  <ul>
+    <li>How CAN arbitration works at the bit level.</li>
+    <li>Why dominant and recessive bits are important for CAN bus priority.</li>
+    <li>How standard and extended CAN frames differ during arbitration.</li>
+    <li>How to inspect CAN traffic using oscilloscope serial decoding.</li>
+    <li>Why termination resistors matter for longer or faster CAN networks.</li>
+    <li>How CRC and bit stuffing improve reliability in CAN communication.</li>
+    <li>How embedded software interacts with real communication hardware.</li>
+  </ul>
+
+  <h2>Repository</h2>
+
+  <div class="note">
+    <p>
+      This was a university lab project. Because the assignment may be reused in
+      later semesters, I keep the full source code private and publish only this
+      technical overview.
+    </p>
+  </div>
+
+  <p>
+    <a href="https://github.com/ljubicicbobo/YOUR_REPO_NAME" target="_blank">
+      View code on GitHub
+    </a>
+  </p>
+
+</body>
+</html>
